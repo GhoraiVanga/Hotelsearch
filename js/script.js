@@ -32,7 +32,7 @@ function getplayerrow(player) {
           <td class="align-middle">${player.name}</td>
           <td class="align-middle">${player.city}</td>
           <td class="align-middle">${player.phone}</td>    
-          <td class="align-middle"> ${player.remark}</td> 
+          <td class="align-middle"> ${player.status}</td> 
           <td class="align-middle">
             <a href="#" class="btn btn-success mr-3 profile" data-toggle="modal" data-target="#userViewModal"
               title="Prfile" data-id="${player.id}"><i class="fa fa-address-card-o" aria-hidden="true"></i></a>
@@ -144,6 +144,11 @@ $(document).ready(function () {
           $("#city").val(player.city);
           $("#phone").val(player.phone);
           $("#userid").val(player.id);
+          $("#email").val(player.email);
+          $("#eid").val(player.eid);
+          $("#OldComment").val(player.comment);
+          $("#Date").val(player.date);
+          $("#WebSite").val(player.website);
         }
         $("#overlay").fadeOut();
       },
@@ -169,7 +174,7 @@ $(document).ready(function () {
         success: function (res) {
           if (res.deleted == 1) {
             $(".message")
-              .html("Player has been deleted successfully!")
+              .html("This ID  has been Deleted Successfully!")
               .fadeIn()
               .delay(3000)
               .fadeOut();
@@ -196,7 +201,7 @@ $(document).ready(function () {
         if (player) {
           const userphoto = player.photo ? player.photo : "default.png";
           const profile = `<div class="row">
-                <div class="col-sm-6 col-md-4">
+                 <div class="col-sm-6 col-md-4">
                   <img src="uploads/hotel.jpg" class="rounded responsive" />
                 </div>
                 <div class="col-sm-6 col-md-8">
@@ -209,6 +214,14 @@ $(document).ready(function () {
                     <i class="fa fa-star" aria-hidden="true"></i> ${player.star}
                     <br />
                     <i class="fa fa-address-card" aria-hidden="true"></i> ${player.address}
+                      <br />
+                      <i class="fa fa-envelope" aria-hidden="true"></i>${player.email} 
+                      <br />
+                      <i class="fa fa-commenting-o" aria-hidden="true"></i>${player.comment}
+                      <br/>
+                      <i class="fa fa-calendar" aria-hidden="true"></i>${player.date}
+                      <br/>
+                      <i class="fa fa-chrome" aria-hidden="true"></i>${player.website}
                   </p>
                 </div>
               </div>`;

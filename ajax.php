@@ -1,4 +1,5 @@
 <?php
+
 $action = $_REQUEST['action'];
 
 if (!empty($action)) {
@@ -8,11 +9,17 @@ if (!empty($action)) {
 
 if ($action == 'adduser' && !empty($_POST)) {
     $name = $_POST['name'];
-    
+    $website=$_POST['WebSite'];
+    $email=$_POST['email'];
+    $oldcomment= $_SESSION["OldComment"] ; 
+    $comment=$_POST['Comment'];
+    $date=$_POST['Date'];
     $city = $_POST['city'];
     $phone = $_POST['phone'];
  
     $status=$_POST['status'];
+    $eid=$_POST['eid'];
+
     $playerId = (!empty($_POST['userid'])) ? $_POST['userid'] : '';
 
     // file (photo) upload
@@ -23,14 +30,25 @@ if ($action == 'adduser' && !empty($_POST)) {
             'name' => $name,
             'city' => $city,
             'phone' => $phone,
-            'remark' => $status,
+            'status' => $status,
+            'website'=>$website,
+            'email'=>$email,
+            'comment' =>$oldcomment."<br>". (date("Y-m-d h:i:sa"))." - <br>".$comment,
+            'date' =>$date,
+            'eid' =>$eid,
+
         ];
     } else {
         $playerData = [
-            'name' => $name,
+               'name' => $name,
             'city' => $city,
             'phone' => $phone,
-            'remark' => $status,
+            'status' => $status,
+            'website'=>$website,
+            'email'=>$email,
+            'comment' =>$oldcomment."<br>". (date("Y-m-d h:i:sa"))." - <br>".$comment,
+            'date' =>$date,
+             'eid' =>$eid,
         ];
     }
 
@@ -93,3 +111,4 @@ if ($action == 'search') {
     echo json_encode($results);
     exit();
 }
+?>

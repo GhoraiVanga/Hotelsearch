@@ -1,6 +1,6 @@
 <?php
 require_once 'Database.php';
-
+session_start();
 class Player extends Database
 {
     // table name
@@ -85,6 +85,9 @@ class Player extends Database
         }
         return $results;
     }
+    
+    /**
+
 
     // delete row using id
     public function deleteRow($id)
@@ -102,7 +105,7 @@ class Player extends Database
         }
 
     }
-
+         */
     public function getCount()
     {
         $sql = "SELECT count(*) as pcount FROM {$this->tableName}";
@@ -125,10 +128,12 @@ class Player extends Database
         $stmt->execute([":{$field}" => $value]);
         if ($stmt->rowCount() > 0) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION["OldComment"] = $result['comment'];
+            
         } else {
             $result = [];
         }
-
+      
         return $result;
     }
 
@@ -150,6 +155,9 @@ class Player extends Database
      * @param array $file
      * @return string $newFileName
      */
+   
+
+/**
     public function uploadPhoto($file)
     {
         if (!empty($file)) {
@@ -171,5 +179,5 @@ class Player extends Database
 
         }
     }
-
+          */
 }
